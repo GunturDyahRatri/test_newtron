@@ -39,22 +39,26 @@ class _HomePageState extends State<HomePage> {
           ? NotificationListener<ScrollNotification>(
               onNotification: (ScrollNotification scrolDetails) {
                 if (!_isLoading &&
-                    _channel.videos.length != int.parse(_channel.videoCount) &&
+                    _channel.videos!.length != int.parse(_channel.videoCount) &&
                     scrolDetails.metrics.pixels ==
                         scrolDetails.metrics.maxScrollExtent) {
                   _loadMoreVideos();
                 }
                 return false;
               },
-              child: ListView.builder(
-                itemCount: 1 + _channel.videos.length,
-                itemBuilder: (BuildContext context, int index) {
-                  if (index == 0) {
-                    return _buildProfileInfo();
-                  }
-                  Video video = _channel.videos[index - 1];
-                  return _buildVideo(video);
-                },
+              child: Column(
+                children: <Widget>[
+                  ListView.builder(
+                    itemCount: 1 + _channel.videos!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index == 0) {
+                        return _buildProfileInfo();
+                      }
+                      Video video = _channel.videos![index - 1];
+                      return _buildVideo(video);
+                    },
+                  ),
+                ],
               ),
             )
           : Center(
@@ -168,7 +172,7 @@ class _HomePageState extends State<HomePage> {
     _isLoading = true;
     List<Video> moreVideos = await APIService.instance
         .fetchVideosfromPlaylist(playlistId: _channel.uploadPlaylistId);
-    List<Video> allVideos = _channel.videos..addAll(moreVideos);
+    List<Video> allVideos = _channel.videos!..addAll(moreVideos);
     setState(() {
       _channel.videos = allVideos;
     });

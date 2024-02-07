@@ -7,24 +7,16 @@ class Channel {
   final String subscriberCount;
   final String videoCount;
   final String uploadPlaylistId;
-  List<Video> videos;
+  List<Video>? videos;
 
-  Channel(
-      // this.id,
-      // this.title,
-      // this.profilePictureUrl,
-      // this.subscriberCount,
-      // this.videoCount,
-      // this.uploadPlaylistId,
-      // this.videos,
-      {
+  Channel({
     required this.id,
     required this.title,
     required this.profilePictureUrl,
     required this.subscriberCount,
     required this.videoCount,
     required this.uploadPlaylistId,
-    required this.videos,
+    this.videos,
   });
 
   factory Channel.fromMap(Map<String, dynamic> map) {
