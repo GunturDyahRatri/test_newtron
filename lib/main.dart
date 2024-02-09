@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testnewtron/pages/home.dart';
+import 'package:testnewtron/pages/home_base.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.lightBlue,
       ),
-      home: const HomePage(),
+      home: const HomeBasePage(),
     );
   }
 }

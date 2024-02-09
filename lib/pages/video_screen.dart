@@ -10,7 +10,7 @@ class VideoScreen extends StatefulWidget {
 }
 
 class _VideoScreenState extends State<VideoScreen> {
-  late YoutubePlayerController _controller;
+  YoutubePlayerController? _controller;
 
   @override
   void initState() {
@@ -28,10 +28,9 @@ class _VideoScreenState extends State<VideoScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: YoutubePlayer(
-        controller: _controller,
-        showVideoProgressIndicator: true,
+        controller: _controller!,
         onReady: () {
-          print('Player is ready.');
+          debugPrint('Player is ready.');
         },
       ),
     );
