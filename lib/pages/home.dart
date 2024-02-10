@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 235, 231, 231),
+      backgroundColor: const Color.fromARGB(255, 235, 231, 231),
       // ignore: unnecessary_null_comparison
       body: _channel != null
           ? NotificationListener<ScrollNotification>(
@@ -127,7 +127,10 @@ class _HomePageState extends State<HomePage> {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => VideoScreen(id: video.id),
+          builder: (_) => VideoScreen(
+            id: video.id,
+            channel: _channel!,
+          ),
         ),
       ),
       // onTap: () => VideoScreen(id: video.id),
